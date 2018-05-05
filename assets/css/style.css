@@ -1,0 +1,44 @@
+
+body{
+    /* font-family: 'Coustard', serif; */
+}
+
+.card{
+    /* background:rgba(255,255,255,0.7); */
+}
+
+
+#startApp{
+    border-radius: 50%;
+    border: 2px solid darkblue;
+}
+
+#jumbotronID {
+    /* background-image: url("../images/jumbotron_Image.png"); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 2rem 2rem;
+    display:flex;
+    max-height: 100%;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#jumbotronTxt {
+    color: black;
+    font-weight: bold;
+    /* font-family: 'Press Start 2P', cursive; */
+}
+
+#gifHeader{
+    border-bottom: 3px solid lightslategray;
+
+}
+
+@media screen and (max-width: 640px) {
+    #jumbotronTxt{
+        font-size: 1.9em;
+
+    }
+
+}
