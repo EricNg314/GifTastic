@@ -3,7 +3,7 @@
 $(document).ready(function () {
 
 
-    var defSearchArry = ["cat", "dog", "parrot"];
+    var defSearchArry = ["Mario", "Sonic", "Super Smash Brothers", "Zelda", "Kirby", "Pokemon"];
     var currSearchArry = defSearchArry;
     var imageDiv = $("#gifBox");
     var btnsDiv = $("#gifBtns");
@@ -38,7 +38,6 @@ $(document).ready(function () {
     makeButtons(defSearchArry);
 
     $(document).on("click", "#run-search", function () {
-
         event.preventDefault();
         searchTxt = $("#gifSearchTxt").val().trim();
         currSearchArry.push(searchTxt);
@@ -53,14 +52,11 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".btnSearch", function () {
-
         event.preventDefault();
         var authKey = "RXEKYfD8ip0oRo03T6DsdUCnXS6A69lw";
         var numResults = 10;
         var searchTxt = this.value;
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTxt + "&api_key=" + authKey;
-
-        console.log(this);
 
         $.ajax({
             url: queryURL,
@@ -93,8 +89,8 @@ $(document).ready(function () {
             var newButton = $("<button>");
 
             // var elementExists = document.getElementById("find-me");
-            // newButton.addClass("btn btn-secondary mx-1 btnSearch animated fadeInRight")
-            newButton.addClass("btn btn-secondary mx-1 btnSearch")
+            newButton.addClass("btn btn-secondary mx-1 btnSearch animated fadeInDown")
+            // newButton.addClass("btn btn-secondary mx-1 btnSearch")
             newButton.attr("value", array[i]);
             newButton.text(array[i]);
             btnsDiv.append(newButton);
