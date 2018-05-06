@@ -62,6 +62,7 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
+            console.log(response);
             makeGifs(response, numResults);
         });
 
@@ -96,35 +97,44 @@ $(document).ready(function () {
             btnsDiv.append(newButton);
 
         }
-        console.log(btnsDiv);
     }
 
     function makeGifs(response, numResults) {
         imageDiv.empty();
 
         for (var i = 0; i < numResults; i++) {
+            var imgDiv = $("<div>");
             var imgInfoDiv = $("<div>");
             var imgTag = $("<img>");
-            var imgPTag = $("<p>");
+            var imgPRating = $("<p>");
+            var imgPUser = $("<p>");
+            var username = response["data"][i]["username"]
             var rating = response["data"][i]["rating"];
             var imgURLStill = response["data"][i]["images"]["fixed_height_still"]["url"];
             var imgURLAnimated = response["data"][i]["images"]["fixed_height"]["url"];
 
-            imgInfoDiv.addClass("d-block float-left m-3")
+            imgDiv.addClass("d-block rounded border  float-left m-3")
 
-            imgPTag.text("Rating: " + rating);
+            imgInfoDiv.addClass("text-white bg-dark")
+            imgPUser.text("By: " + username);
+
+            imgPRating.addClass("my-0 py-auto")
+            imgPRating.text("Rating: " + rating);
+
             imgTag.addClass("gif");
             imgTag.attr("src", imgURLStill);
             imgTag.attr("data-state", "still");
             imgTag.attr("data-still", imgURLStill);
             imgTag.attr("data-animated", imgURLAnimated);
 
-            // console.log(imgTag);
+            imgInfoDiv.append(imgPRating);
+            // imgInfoDiv.append(imgPUser);
 
-            imgInfoDiv.append(imgPTag);
-            imgInfoDiv.append(imgTag);
 
-            imageDiv.append(imgInfoDiv);
+            imgDiv.append(imgInfoDiv);
+            imgDiv.append(imgTag);
+
+            imageDiv.append(imgDiv);
         };
 
 
