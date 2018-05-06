@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     makeButtons(defSearchArry);
 
-    $(document).on("click","#run-search", function () {
+    $(document).on("click", "#run-search", function () {
 
         event.preventDefault();
         searchTxt = $("#gifSearchTxt").val().trim();
@@ -52,7 +52,7 @@ $(document).ready(function () {
         currSearchArry = [];
     });
 
-    $(document).on("click",".btnSearch", function () {
+    $(document).on("click", ".btnSearch", function () {
 
         event.preventDefault();
         var authKey = "RXEKYfD8ip0oRo03T6DsdUCnXS6A69lw";
@@ -66,7 +66,6 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log(response)
             makeGifs(response, numResults);
         });
 
@@ -78,10 +77,10 @@ $(document).ready(function () {
         var gifState = $(this).attr("data-state");
         if (gifState === "still") {
             $(this).attr("src", $(this).attr("data-animated"));
-            gifState = "animated";
+            gifState = $(this).attr("data-state", "animated");
         } else if (gifState === "animated") {
             $(this).attr("src", $(this).attr("data-still"));
-            gifState = "still";
+            gifState = $(this).attr("data-state", "still");
         }
 
     });
