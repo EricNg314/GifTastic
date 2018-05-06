@@ -9,6 +9,8 @@ $(document).ready(function () {
     var btnsDiv = $("#gifBtns");
 
     $("#startApp").on("click", function () {
+        play_click_sound();
+
         //=======Animation ending detection BEGIN========/
         var animationEnd = (function (el) {
             var animations = {
@@ -43,12 +45,13 @@ $(document).ready(function () {
         currSearchArry.push(searchTxt);
 
         makeButtons(currSearchArry);
-
+        play_click_sound();
     });
 
     $("#clear-all").on("click", function () {
         btnsDiv.empty();
         currSearchArry = [];
+        play_click_sound();
     });
 
     $(document).on("click", ".btnSearch", function () {
@@ -65,12 +68,11 @@ $(document).ready(function () {
             console.log(response);
             makeGifs(response, numResults);
         });
-
+        play_click_sound();
     });
 
 
     $(document).on("click", ".gif", function () {
-        console.log("gif hit")
         var gifState = $(this).attr("data-state");
         if (gifState === "still") {
             $(this).attr("src", $(this).attr("data-animated"));
@@ -79,7 +81,7 @@ $(document).ready(function () {
             $(this).attr("src", $(this).attr("data-still"));
             gifState = $(this).attr("data-state", "still");
         }
-
+        play_click_sound();
     });
 
 
@@ -139,5 +141,9 @@ $(document).ready(function () {
 
 
     };
+
+    function play_click_sound() {
+        document.getElementById('audioClick').play();
+    }
 
 });
