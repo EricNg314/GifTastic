@@ -92,7 +92,7 @@ $(document).ready(function () {
             var newButton = $("<button>");
 
             // var elementExists = document.getElementById("find-me");
-            newButton.addClass("btn btn-secondary mx-1 btnSearch animated fadeInDown")
+            newButton.addClass("btn btn-secondary my-1 mx-1 btnSearch animated fadeInDown")
             // newButton.addClass("btn btn-secondary mx-1 btnSearch")
             newButton.attr("value", array[i]);
             newButton.text(array[i]);
