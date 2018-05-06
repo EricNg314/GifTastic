@@ -37,7 +37,7 @@ $(document).ready(function () {
 
     makeButtons(defSearchArry);
 
-    $("#run-search").click(function () {
+    $(document).on("click","#run-search", function () {
 
         event.preventDefault();
         searchTxt = $("#gifSearchTxt").val().trim();
@@ -47,12 +47,12 @@ $(document).ready(function () {
 
     });
 
-    $("#clear-all").click(function () {
+    $("#clear-all").on("click", function () {
         btnsDiv.empty();
         currSearchArry = [];
     });
 
-    $(".btnSearch").click(function(){
+    $(document).on("click",".btnSearch", function () {
 
         event.preventDefault();
         var authKey = "RXEKYfD8ip0oRo03T6DsdUCnXS6A69lw";
@@ -65,21 +65,32 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(response){
+        }).then(function (response) {
             console.log(response)
-
             makeGifs(response, numResults);
-
         });
 
+    });
 
-    })
+
+    $(document).on("click", ".gif", function () {
+        console.log("gif hit")
+        var gifState = $(this).attr("data-state");
+        if (gifState === "still") {
+            $(this).attr("src", $(this).attr("data-animated"));
+            gifState = "animated";
+        } else if (gifState === "animated") {
+            $(this).attr("src", $(this).attr("data-still"));
+            gifState = "still";
+        }
+
+    });
 
 
-    function makeButtons(array){
+    function makeButtons(array) {
         btnsDiv.empty();
 
-        for(var i = 0; i < array.length; i++){
+        for (var i = 0; i < array.length; i++) {
             var newButton = $("<button>");
 
             // var elementExists = document.getElementById("find-me");
@@ -88,14 +99,15 @@ $(document).ready(function () {
             newButton.attr("value", array[i]);
             newButton.text(array[i]);
             btnsDiv.append(newButton);
-            // console.log(btnsDiv);
+
         }
+        console.log(btnsDiv);
     }
 
-    function makeGifs(response, numResults){
+    function makeGifs(response, numResults) {
         imageDiv.empty();
 
-        for (var i = 0; i < numResults; i++){
+        for (var i = 0; i < numResults; i++) {
             var imgInfoDiv = $("<div>");
             var imgTag = $("<img>");
             var imgPTag = $("<p>");
@@ -106,8 +118,9 @@ $(document).ready(function () {
             imgInfoDiv.addClass("d-block float-left m-3")
 
             imgPTag.text("Rating: " + rating);
+            imgTag.addClass("gif");
             imgTag.attr("src", imgURLStill);
-            imgTag.attr("data-status", "still");
+            imgTag.attr("data-state", "still");
             imgTag.attr("data-still", imgURLStill);
             imgTag.attr("data-animated", imgURLAnimated);
 
