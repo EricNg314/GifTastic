@@ -156,6 +156,7 @@ $(document).ready(function () {
         var playPauseAll = $("#playPauseAllBtn").attr("data-state");
 
         if (playPauseAll === "still") {
+            $("#playPauseAllBtn").text("Pause All Gifs")
             $("#playPauseAllBtn").attr("data-state", "animated");
             for (var i = elements.length - 1; i >= 0; --i) {
                 var gifElement = (elements[i]);
@@ -167,6 +168,7 @@ $(document).ready(function () {
                 }
             }
         } else if (playPauseAll === "animated") {
+            $("#playPauseAllBtn").text("Play All Gifs")
             $("#playPauseAllBtn").attr("data-state", "still");
             for (var i = elements.length - 1; i >= 0; --i) {
                 var gifElement = (elements[i]);
