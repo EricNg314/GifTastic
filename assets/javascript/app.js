@@ -71,15 +71,19 @@ $(document).ready(function () {
         play_click_sound();
     });
 
+    $(document).on("click", "#playPauseAllBtn", function(){
+        playPauseGifs();
+    })
+
 
     $(document).on("click", ".gif", function () {
         var gifState = $(this).attr("data-state");
         if (gifState === "still") {
             $(this).attr("src", $(this).attr("data-animated"));
-            gifState = $(this).attr("data-state", "animated");
+            $(this).attr("data-state", "animated");
         } else if (gifState === "animated") {
             $(this).attr("src", $(this).attr("data-still"));
-            gifState = $(this).attr("data-state", "still");
+            $(this).attr("data-state", "still");
         }
         play_click_sound();
     });
@@ -139,8 +143,39 @@ $(document).ready(function () {
             imageDiv.append(imgDiv);
         };
 
-
     };
+
+    function playPauseGifs() {
+        var elements = document.getElementsByClassName("gif");
+        var playPauseAll = $("#playPauseAllBtn").attr("data-state");
+
+        if (playPauseAll === "still") {
+            $("#playPauseAllBtn").attr("data-state", "animated");
+            for (var i = elements.length - 1; i >= 0; --i) {
+                var gifElement = (elements[i]);
+                var gifState = $(gifElement).attr("data-state");
+
+                if (gifState === "still") {
+                    $(gifElement).attr("src", $(gifElement).attr("data-animated"));
+                    $(gifElement).attr("data-state", "animated");
+                }
+            }
+        } else if (playPauseAll === "animated") {
+            $("#playPauseAllBtn").attr("data-state", "still");
+            for (var i = elements.length - 1; i >= 0; --i) {
+                var gifElement = (elements[i]);
+                var gifState = $(gifElement).attr("data-state");
+
+                if (gifState === "animated") {
+                    $(gifElement).attr("src", $(gifElement).attr("data-still"));
+                    $(gifElement).attr("data-state", "still");
+                }
+            }
+        }
+
+    }
+
+
 
     function play_click_sound() {
         document.getElementById('audioClick').play();

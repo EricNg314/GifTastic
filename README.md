@@ -11,12 +11,13 @@ Example of jQuery's AJAX function to utilize API data from giphy.com.
 - Assigning values using jQuery
 - Applying user input using jQuery
 - Listening for user clicking using jQuery
-- Example of API usage and form inputs
+- Applying form inputs into API calls.
 - Utilizing API data created with utilizes objects and arrays
 - If/else statements with conditions
 - Array of potential outputs using objects
 - Output to an html document with specified ID using jQuery
 - Creating and calling functions
+- Cycling through all elements given a class name.
 - Application of animate.css (https://github.com/daneden/animate.css)
 
 
