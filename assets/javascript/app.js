@@ -111,18 +111,25 @@ $(document).ready(function () {
         for (var i = 0; i < numResults; i++) {
             var imgDiv = $("<div>");
             var imgInfoDiv = $("<div>");
-            var imgTag = $("<img>");
-            var imgPRating = $("<p>");
             var imgPUser = $("<p>");
-            var username = response["data"][i]["username"]
+            var username = response["data"][i]["username"];
+            var imgPRating = $("<p>");
             var rating = response["data"][i]["rating"];
+            var imgTag = $("<img>");
             var imgURLStill = response["data"][i]["images"]["fixed_height_still"]["url"];
             var imgURLAnimated = response["data"][i]["images"]["fixed_height"]["url"];
 
             imgDiv.addClass("d-block rounded border  float-left m-3")
 
             imgInfoDiv.addClass("text-white bg-dark")
-            imgPUser.text("By: " + username);
+
+            if(username != ""){
+                imgPUser.text("By Giphy User: " + username);
+                imgInfoDiv.append(imgPUser);
+            }
+
+            imgInfoDiv.append(imgPRating);
+
 
             imgPRating.addClass("my-0 py-auto")
             imgPRating.text("Rating: " + rating);
@@ -133,7 +140,6 @@ $(document).ready(function () {
             imgTag.attr("data-still", imgURLStill);
             imgTag.attr("data-animated", imgURLAnimated);
 
-            imgInfoDiv.append(imgPRating);
             // imgInfoDiv.append(imgPUser);
 
 
