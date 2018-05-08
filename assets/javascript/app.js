@@ -50,6 +50,7 @@ $(document).ready(function () {
 
     $("#clear-all").on("click", function () {
         btnsDiv.empty();
+        imageDiv.empty();
         currSearchArry = [];
         play_click_sound();
     });
@@ -119,11 +120,12 @@ $(document).ready(function () {
             var imgURLStill = response["data"][i]["images"]["fixed_height_still"]["url"];
             var imgURLAnimated = response["data"][i]["images"]["fixed_height"]["url"];
 
-            imgDiv.addClass("d-block rounded border  float-left m-3")
+            imgDiv.addClass("d-inline-block rounded border m-3")
 
             imgInfoDiv.addClass("text-white bg-dark")
 
             if(username != ""){
+                imgPUser.addClass("my-0 py-auto");
                 imgPUser.text("By Giphy User: " + username);
                 imgInfoDiv.append(imgPUser);
             }
