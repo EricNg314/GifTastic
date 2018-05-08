@@ -3,10 +3,11 @@
 $(document).ready(function () {
 
 
-    var defSearchArry = ["Mario", "Sonic", "Super Smash Brothers", "Zelda", "Kirby", "Pokemon"];
+    var defSearchArry = ["Mario", "Sonic", "Super Smash Brothers", "Zelda", "Kirby", "Pokemon", "Star Fox", "Hearthstone", "World of Warcraft", "Call of Duty"];
     var currSearchArry = defSearchArry;
     var imageDiv = $("#gifBox");
     var btnsDiv = $("#gifBtns");
+    var playPauseAll = $("#playPauseAllBtn").attr("data-state");
 
     $("#startApp").on("click", function () {
         play_click_sound();
@@ -70,6 +71,11 @@ $(document).ready(function () {
             makeGifs(response, numResults);
         });
         play_click_sound();
+
+        //Resetting playpause button.
+        if($("#playPauseAllBtn").attr("data-state") === "animated"){
+            playPauseGifs();
+        }
     });
 
     $(document).on("click", "#playPauseAllBtn", function(){
@@ -151,11 +157,11 @@ $(document).ready(function () {
 
     function playPauseGifs() {
         var elements = document.getElementsByClassName("gif");
-        var playPauseAll = $("#playPauseAllBtn").attr("data-state");
 
         if (playPauseAll === "still") {
             $("#playPauseAllBtn").text("Pause All Gifs")
             $("#playPauseAllBtn").attr("data-state", "animated");
+            playPauseAll = "animated";
             for (var i = elements.length - 1; i >= 0; --i) {
                 var gifElement = (elements[i]);
                 var gifState = $(gifElement).attr("data-state");
@@ -168,6 +174,7 @@ $(document).ready(function () {
         } else if (playPauseAll === "animated") {
             $("#playPauseAllBtn").text("Play All Gifs")
             $("#playPauseAllBtn").attr("data-state", "still");
+            playPauseAll = "still";
             for (var i = elements.length - 1; i >= 0; --i) {
                 var gifElement = (elements[i]);
                 var gifState = $(gifElement).attr("data-state");
