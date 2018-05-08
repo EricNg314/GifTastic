@@ -49,7 +49,7 @@ $(document).ready(function () {
     });
 
     $("#clear-all").on("click", function () {
-        btnsDiv.empty();
+        // btnsDiv.empty();
         imageDiv.empty();
         currSearchArry = [];
         play_click_sound();
@@ -66,7 +66,7 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
             makeGifs(response, numResults);
         });
         play_click_sound();
@@ -96,9 +96,7 @@ $(document).ready(function () {
         for (var i = 0; i < array.length; i++) {
             var newButton = $("<button>");
 
-            // var elementExists = document.getElementById("find-me");
             newButton.addClass("btn btn-dark my-1 mx-1 btnSearch animated fadeInDown")
-            // newButton.addClass("btn btn-secondary mx-1 btnSearch")
             newButton.attr("value", array[i]);
             newButton.text(array[i]);
             btnsDiv.append(newButton);
@@ -141,8 +139,6 @@ $(document).ready(function () {
             imgTag.attr("data-state", "still");
             imgTag.attr("data-still", imgURLStill);
             imgTag.attr("data-animated", imgURLAnimated);
-
-            // imgInfoDiv.append(imgPUser);
 
 
             imgDiv.append(imgInfoDiv);
